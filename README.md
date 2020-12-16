@@ -41,3 +41,5 @@ Production builds are enabled using:
 ```
     npm run build
 ```
+
+However, I have a slight issue with parcel for production builds. The reference to the bundled js file is prefaced with a forward slash.  I host all my purescript browser applications on Apache, which is not finding the bundle unless I remove the slash.

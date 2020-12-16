@@ -1,11 +1,11 @@
-var Main = require('./output/Main'); 
+import Main from "./output/Main";
 
 function main () {
     /*
     Here we could add variables such as
 
-    var baseUrl = process.env.BASE_URL;
 
+    
     Parcel will replace `process.env.BASE_URL`
     with the string contents of the BASE_URL environment
     variable at bundle/build time.
