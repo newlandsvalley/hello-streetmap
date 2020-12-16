@@ -1,0 +1,35 @@
+{
+  "name": "hello-streetmap",
+  "version": "1.0.0",
+  "description": "Scaffolding for openlayers view of OpenStreetMap",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "spago build && parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newlandsvalley/hello-streetmap.git"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "pulp": "^15.0.0",
+    "purescript": "^0.13.8",
+    "purescript-psa": "^0.5.1",
+    "webpack": "^3.6.0"
+  },
+  "keywords": [
+    "OpenStreetMap",
+    "openlayers",
+    "Halogen"
+  ],
+  "author": "John Watson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/newlandsvalley/hello-streetmap/issues"
+  },
+  "homepage": "https://github.com/newlandsvalley/hello-streetmap#readme"
+}
