@@ -15,10 +15,8 @@ import OpenLayers.Proj as Proj
 import OpenLayers.Source.OSM as OSM
 import OpenLayers.View as View
 
--- type Slot = H.Slot Query Void
 type Slot = H.Slot (Const Void) Void
 
--- | State for the component
 type State =  {   map           ::Maybe Map.Map         -- | The Map on the page
               }
 
@@ -53,6 +51,9 @@ component =
     HH.div_
       [ renderMap state  ]
 
+  --- The map is rendered by side-effct into the div tag whose id is 'map'
+  --- This tag should have appropriate height and width designated in the css
+  --- otherwise it won't display
   renderMap :: State -> H.ComponentHTML Action ChildSlots m
   renderMap state =
     HH.div_
@@ -65,8 +66,8 @@ component =
   handleAction ∷ Action -> H.HalogenM State Action ChildSlots o m Unit
   handleAction = case _ of
     Initialize -> do
-      hamap <- createBasicMap
-      H.modify_ (_ { map = Just hamap }
+      mymap <- createBasicMap
+      H.modify_ (_ { map = Just mymap }
                 )
     Finalize -> do
       pure unit
@@ -78,8 +79,7 @@ createBasicMap :: forall o m . MonadAff m
           => H.HalogenM State Action () o m Map.Map
 createBasicMap = do
 
-  state <- H.get
-  hamap <- H.liftEffect $ do
+  mymap <- H.liftEffect $ do
     -- Use OpenStreetMap as a source
     osm <- OSM.create'
     tile <- Tile.create {source: osm}
@@ -91,7 +91,7 @@ createBasicMap = do
                         }
 
     log "creating map at div id map"
-      
+
     -- Create the map and set up the controls, layers and view
     Map.create {
         target: Map.target.asId "map"
@@ -99,7 +99,7 @@ createBasicMap = do
         , view: view}
 
   -- Return with the map
-  pure hamap
+  pure mymap
 
 edinburghLonLat :: Array Number
 edinburghLonLat = [-3.1883, 55.9533 ]
