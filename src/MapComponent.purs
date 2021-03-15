@@ -29,7 +29,7 @@ data Action
 
 -- | The component definition
 component :: forall q i o m . MonadAff m
-          => H.Component HH.HTML q i o m
+          => H.Component q i o m
 component =
   H.mkComponent
     { initialState
@@ -58,7 +58,7 @@ component =
   renderMap state =
     HH.div_
        [ HH.div
-           [ HP.id_ "parent" ]
+           [ HP.id "parent" ]
            [ HH.text "map will go here" ]
        , HH.div [HP.id_ "map" ][]
        ]
